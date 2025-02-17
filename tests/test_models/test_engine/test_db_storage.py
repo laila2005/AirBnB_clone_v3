@@ -5,6 +5,20 @@ Unit Test for BaseModel Class
 import unittest
 from datetime import datetime
 from models import *
+<<<<<<< HEAD
+import os
+from models.base_model import Base
+from models.engine.db_storage import DBStorage
+
+
+storage_type = os.environ.get('HBNB_TYPE_STORAGE')
+
+
+@unittest.skipIf(storage_type != 'db', 'skip if environ is not db')
+class TestDBStorageDocs(unittest.TestCase):
+    """Class for testing BaseModel docs"""
+
+=======
 import inspect
 from os import environ, stat
 import pep8
@@ -20,10 +34,76 @@ class TestDBStorageDocs(unittest.TestCase):
 
     all_funcs = inspect.getmembers(DBStorage, inspect.isfunction)
 
+>>>>>>> origin/storage_get_count
     @classmethod
     def setUpClass(cls):
         print('\n\n.................................')
         print('..... Testing Documentation .....')
+<<<<<<< HEAD
+        print('..... For FileStorage Class .....')
+        print('.................................\n\n')
+
+    def test_doc_file(self):
+        """... documentation for the file"""
+        expected = ' Database engine '
+        actual = db_storage.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_class(self):
+        """... documentation for the class"""
+        expected = 'handles long term storage of all class instances'
+        actual = DBStorage.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_all(self):
+        """... documentation for all function"""
+        expected = ' returns a dictionary of all objects '
+        actual = DBStorage.all.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_new(self):
+        """... documentation for new function"""
+        expected = ' adds objects to current database session '
+        actual = DBStorage.new.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_save(self):
+        """... documentation for save function"""
+        expected = ' commits all changes of current database session '
+        actual = DBStorage.save.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_reload(self):
+        """... documentation for reload function"""
+        expected = ' creates all tables in database & session from engine '
+        actual = DBStorage.reload.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_delete(self):
+        """... documentation for delete function"""
+        expected = ' deletes obj from current database session if not None '
+        actual = DBStorage.delete.__doc__
+        self.assertEqual(expected, actual)
+
+
+@unittest.skipIf(storage_type != 'db', 'skip if environ is not db')
+class TestStateDBInstances(unittest.TestCase):
+    """testing for class instances"""
+
+    @classmethod
+    def setUpClass(cls):
+        print('\n\n.................................')
+        print('......... Testing DBStorage .;.......')
+        print('........ For State Class ........')
+        print('.................................\n\n')
+
+    def setUp(self):
+        """initializes new BaseModel object for testing"""
+        self.state = State()
+        self.state.name = 'California'
+        self.state.save()
+
+=======
         print('..... For DB Storage Class .....')
         print('.................................\n\n')
 
@@ -155,6 +235,7 @@ class TestStateDBInstances(unittest.TestCase):
         self.state.name = 'California'
         self.state.save()
 
+>>>>>>> origin/storage_get_count
     def test_state_all(self):
         """... checks if all() function returns newly created instance"""
         all_objs = storage.all()
@@ -172,6 +253,12 @@ class TestStateDBInstances(unittest.TestCase):
         self.assertTrue(exist_in_all)
         self.assertTrue(exist_in_all_states)
 
+<<<<<<< HEAD
+    def test_state_delete(self):
+        state_id = self.state.id
+        storage.delete(self.state)
+        self.state = None
+=======
     def test_new_state(self):
         """... checks if new() functions after instantiation and save()"""
         actual = False
@@ -186,6 +273,7 @@ class TestStateDBInstances(unittest.TestCase):
     def test_state_delete(self):
         state_id = self.state.id
         storage.delete(self.state)
+>>>>>>> origin/storage_get_count
         storage.save()
         exist_in_all = False
         for k in storage.all().keys():
@@ -194,7 +282,11 @@ class TestStateDBInstances(unittest.TestCase):
         self.assertFalse(exist_in_all)
 
 
+<<<<<<< HEAD
+@unittest.skipIf(storage_type != 'db', 'skip if environ is not db')
+=======
 @unittest.skipIf(STORAGE_TYPE != 'db', 'skip if environ is not db')
+>>>>>>> origin/storage_get_count
 class TestUserDBInstances(unittest.TestCase):
     """testing for class instances"""
 
@@ -205,10 +297,13 @@ class TestUserDBInstances(unittest.TestCase):
         print('.......... User  Class ..........')
         print('.................................\n\n')
 
+<<<<<<< HEAD
+=======
     def tearDownClass():
         """tidies up the tests removing storage objects"""
         storage.delete_all()
 
+>>>>>>> origin/storage_get_count
     def setUp(self):
         """initializes new user for testing"""
         self.user = User()
@@ -220,6 +315,10 @@ class TestUserDBInstances(unittest.TestCase):
         """... checks if all() function returns newly created instance"""
         all_objs = storage.all()
         all_user_objs = storage.all('User')
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/storage_get_count
         exist_in_all = False
         for k in all_objs.keys():
             if self.user.id in k:
@@ -228,6 +327,10 @@ class TestUserDBInstances(unittest.TestCase):
         for k in all_user_objs.keys():
             if self.user.id in k:
                 exist_in_all_users = True
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/storage_get_count
         self.assertTrue(exist_in_all)
         self.assertTrue(exist_in_all_users)
 
@@ -243,7 +346,11 @@ class TestUserDBInstances(unittest.TestCase):
         self.assertFalse(exist_in_all)
 
 
+<<<<<<< HEAD
+@unittest.skipIf(storage_type != 'db', 'skip if environ is not db')
+=======
 @unittest.skipIf(STORAGE_TYPE != 'db', 'skip if environ is not db')
+>>>>>>> origin/storage_get_count
 class TestCityDBInstances(unittest.TestCase):
     """testing for class instances"""
 
@@ -254,10 +361,13 @@ class TestCityDBInstances(unittest.TestCase):
         print('.......... City  Class ..........')
         print('.................................\n\n')
 
+<<<<<<< HEAD
+=======
     def tearDownClass():
         """tidies up the tests removing storage objects"""
         storage.delete_all()
 
+>>>>>>> origin/storage_get_count
     def setUp(self):
         """initializes new user for testing"""
         self.state = State()
@@ -286,13 +396,23 @@ class TestCityDBInstances(unittest.TestCase):
         self.assertTrue(exist_in_all_city)
 
 
+<<<<<<< HEAD
+@unittest.skipIf(storage_type != 'db', 'skip if environ is not db')
+=======
 @unittest.skipIf(STORAGE_TYPE != 'db', 'skip if environ is not db')
+>>>>>>> origin/storage_get_count
 class TestCityDBInstancesUnderscore(unittest.TestCase):
     """testing for class instances"""
 
     @classmethod
     def setUpClass(cls):
         print('\n\n.................................')
+<<<<<<< HEAD
+        print('...... Testing FileStorage ......')
+        print('.......... City Class ..........')
+        print('.................................\n\n')
+
+=======
         print('...... Testing DB Storage ......')
         print('.......... City Class ..........')
         print('.................................\n\n')
@@ -301,6 +421,7 @@ class TestCityDBInstancesUnderscore(unittest.TestCase):
         """tidies up the tests removing storage objects"""
         storage.delete_all()
 
+>>>>>>> origin/storage_get_count
     def setUp(self):
         """initializes new user for testing"""
         self.state = State()
@@ -324,11 +445,19 @@ class TestCityDBInstancesUnderscore(unittest.TestCase):
         for k in all_city_objs.keys():
             if self.city.id in k:
                 exist_in_all_city = True
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/storage_get_count
         self.assertTrue(exist_in_all)
         self.assertTrue(exist_in_all_city)
 
 
+<<<<<<< HEAD
+@unittest.skipIf(storage_type != 'db', 'skip if environ is not db')
+=======
 @unittest.skipIf(STORAGE_TYPE != 'db', 'skip if environ is not db')
+>>>>>>> origin/storage_get_count
 class TestPlaceDBInstances(unittest.TestCase):
     """testing for class instances"""
 
@@ -339,10 +468,13 @@ class TestPlaceDBInstances(unittest.TestCase):
         print('.......... Place  Class ..........')
         print('.................................\n\n')
 
+<<<<<<< HEAD
+=======
     def tearDownClass():
         """tidies up the tests removing storage objects"""
         storage.delete_all()
 
+>>>>>>> origin/storage_get_count
     def setUp(self):
         """initializes new user for testing"""
         self.user = User()
@@ -387,6 +519,122 @@ class TestPlaceDBInstances(unittest.TestCase):
         self.assertTrue(exist_in_all_place)
 
 
+<<<<<<< HEAD
+@unittest.skipIf(storage_type != 'db', 'skip if environ is not db')
+class TestStorageGet(unittest.TestCase):
+    """
+    Testing `get()` method in DBStorage
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        """
+        setup tests for class
+        """
+        print('\n\n.................................')
+        print('...... Testing Get() Method ......')
+        print('.......... Place  Class ..........')
+        print('.................................\n\n')
+
+    def setUp(self):
+        """
+        setup method
+        """
+        self.state = State(name="Florida")
+        self.state.save()
+
+    def test_get_method_obj(self):
+        """
+        testing get() method
+        :return: True if pass, False if not pass
+        """
+        result = storage.get(cls="State", id=self.state.id)
+
+        self.assertIsInstance(result, State)
+
+    def test_get_method_return(self):
+        """
+        testing get() method for id match
+        :return: True if pass, false if not pass
+        """
+        result = storage.get(cls="State", id=str(self.state.id))
+
+        self.assertEqual(self.state.id, result.id)
+
+    def test_get_method_none(self):
+        """
+        testing get() method for None return
+        :return: True if pass, false if not pass
+        """
+        result = storage.get(cls="State", id="doesnotexist")
+
+        self.assertIsNone(result)
+
+
+@unittest.skipIf(storage_type != 'db', 'skip if environ is not db')
+class TestStorageCount(unittest.TestCase):
+    """
+    tests count() method in DBStorage
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        """
+        setup tests for class
+        """
+        print('\n\n.................................')
+        print('...... Testing Get() Method ......')
+        print('.......... Place  Class ..........')
+        print('.................................\n\n')
+
+    def setup(self):
+        """
+        setup method
+        """
+        self.state1 = State(name="California")
+        self.state1.save()
+        self.state2 = State(name="Colorado")
+        self.state2.save()
+        self.state3 = State(name="Wyoming")
+        self.state3.save()
+        self.state4 = State(name="Virgina")
+        self.state4.save()
+        self.state5 = State(name="Oregon")
+        self.state5.save()
+        self.state6 = State(name="New_York")
+        self.state6.save()
+        self.state7 = State(name="Ohio")
+        self.state7.save()
+
+    def test_count_all(self):
+        """
+        testing counting all instances
+        :return: True if pass, false if not pass
+        """
+        result = storage.count()
+
+        self.assertEqual(len(storage.all()), result)
+
+    def test_count_state(self):
+        """
+        testing counting state instances
+        :return: True if pass, false if not pass
+        """
+        result = storage.count(cls="State")
+
+        self.assertEqual(len(storage.all("State")), result)
+
+    def test_count_city(self):
+        """
+        testing counting non existent
+        :return: True if pass, false if not pass
+        """
+        result = storage.count(cls="City")
+
+        self.assertEqual(int(0 if len(storage.all("City")) is None else
+                             len(storage.all("City"))), result)
+
+=======
 @unittest.skipIf(STORAGE_TYPE != 'db', 'skip if environ is not db')
 class TestCountGet(unittest.TestCase):
     """testing Count and Get methods"""
@@ -456,6 +704,7 @@ class TestCountGet(unittest.TestCase):
         count_all = storage.count()
         expected = 8
         self.assertEqual(expected, count_all)
+>>>>>>> origin/storage_get_count
 
 if __name__ == '__main__':
     unittest.main
