@@ -11,10 +11,6 @@ to_json = base_model.BaseModel.to_json
 
 
 class FileStorage:
-<<<<<<< HEAD
-    """serializes instances to a JSON file & deserializes back to instances"""
-    __file_path = "file.json"
-=======
     """handles long term storage of all class instances"""
     CNC = {
         'BaseModel': base_model.BaseModel,
@@ -30,7 +26,6 @@ class FileStorage:
     values: Class type (used for instantiation)
     """
     __file_path = './dev/file.json'
->>>>>>> d6574587abae6a6b4430b1d73cc73bcd9dd25dc7
     __objects = {}
 
     def all(self, cls=None):

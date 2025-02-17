@@ -102,10 +102,4 @@ class DBStorage:
         """
             calls remove() on private session attribute (self.session)
         """
-<<<<<<< HEAD
-            returns the count of all objects in storages
-        """
-        return (len(self.all(cls)))
-=======
         self.__session.remove()
->>>>>>> d6574587abae6a6b4430b1d73cc73bcd9dd25dc7
